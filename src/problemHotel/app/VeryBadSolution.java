@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import problemHotel.entities.Reservation;
 
-public class BadSolution {
+public class VeryBadSolution {
 
     public static void main(String [] args) throws ParseException{
     
