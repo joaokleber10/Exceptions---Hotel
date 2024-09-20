@@ -1,0 +1,5 @@
+A classe principal (badSolution) não deveria ter esse tipo de verificação, por isso ganhou esse nome.
+
+
+
+The main class (badSolution) shouldn't have this type of check, which is why it was given this name.
