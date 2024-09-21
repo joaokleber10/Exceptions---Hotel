@@ -1,6 +1,0 @@
-A BadSolution ainda conta com alguns imparces, por isso ainda é ruim. Portanto, no próximo estágio, avançaremos
-tratamento de exceções e, consequentemente, será uma solução boa
-
-
-BadSolution still has some impasses, which is why it's still bad. 
-Therefore, in the next stage, we will advance exception handling, and consequently, it will become a good solution.

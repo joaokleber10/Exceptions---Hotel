@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import problemHotel.exceptions.DomainException;
+
 public class Reservation {
     private int roomNumber;
     private Date checkIn;
@@ -11,7 +13,11 @@ public class Reservation {
 
     private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-    public Reservation(int roomNumber, Date checkIn, Date checkOut) {
+    public Reservation(int roomNumber, Date checkIn, Date checkOut){
+        //Tratar a exceção no inicio dos métodos: programação Defensiva (boa prática)
+        if (!checkOut.after(checkIn)){
+            throw new DomainException("Check-Out Date must be after check-In date");
+         } 
         this.roomNumber = roomNumber;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -35,27 +41,18 @@ public class Reservation {
         return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 
-    //Método parte da BadSolution
-    // public void updateDates(Date checkIn, Date checkOut){
-    //     this.checkIn = checkIn;
-    //     this.checkOut = checkOut;
-    // }
-
-    public String updateDates(Date checkIn, Date checkOut){
+    public void updateDates (Date checkIn, Date checkOut){
         Date now = new Date();
         if (checkIn.before(now) || checkOut.before(now)) {
-            return "Reservation date for update must be future dates";
-        }else if (!checkOut.after(checkIn)){
-           return "Check-Out Date must be after check-In date";
+            throw new DomainException( "Reservation date for update must be future dates");
+        }
+         if (!checkOut.after(checkIn)){
+           throw new DomainException("Check-Out Date must be after check-In date");
         } 
         this.checkIn = checkIn;
         this.checkOut = checkOut;
-        return null;
-
-        
     }
 
-    
     @Override
     public String toString() {
         return "Reservation: Room " + roomNumber + ", checkIn: " + sdf.format(checkIn) 
